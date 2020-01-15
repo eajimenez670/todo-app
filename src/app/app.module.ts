@@ -4,7 +4,7 @@ import { NgModule } from "@angular/core";
 // NGRX
 import { StoreModule } from "@ngrx/store";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
-import { todoReducer } from "./components/todo/todo.reducer";
+import { appReducer } from "./app.reducers";
 
 // Forms
 import { ReactiveFormsModule } from "@angular/forms";
@@ -18,6 +18,7 @@ import { TodoListComponent } from "./components/todo/todo-list/todo-list.compone
 import { TodoFooterComponent } from "./components/todo/todo-footer/todo-footer.component";
 import { TodoAddComponent } from "./components/todo/todo-add/todo-add.component";
 import { environment } from "src/environments/environment";
+import { TodoFilterPipe } from './filter/todo-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -27,13 +28,14 @@ import { environment } from "src/environments/environment";
     TodoItemComponent,
     TodoListComponent,
     TodoFooterComponent,
-    TodoAddComponent
+    TodoAddComponent,
+    TodoFilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({ todos: todoReducer }),
+    StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production // Restrict extension to log-only mode
